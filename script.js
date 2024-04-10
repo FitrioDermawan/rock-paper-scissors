@@ -10,7 +10,18 @@ function getComputerChoice() {
         return "scissors";
     }
 }
+const computerSelection = getComputerChoice();
 
+console.log(computerSelection);
+
+// Player input the choice and make it case-insensitive
+function getPlayerChoice() {
+    let selection = prompt("Rock, Paper, Scissors?", "");
+    return selection.toLocaleLowerCase();
+}
+const playerSelection = getPlayerChoice();
+
+console.log(playerSelection);
 
 // Plays a single round and show result
 function playRound(playerSelection, computerSelection) {
@@ -22,12 +33,4 @@ function playRound(playerSelection, computerSelection) {
         return "You Win! Rock beats Scissors"
     }
 }
-
-// Player input the choice and make it case-insensitive
-let selection = prompt("Rock, Paper, Scissors?", "");
-const playerSelection = selection.toLowerCase();
-
-const computerSelection = getComputerChoice();
-
 console.log(playRound(playerSelection, computerSelection))
-
