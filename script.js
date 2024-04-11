@@ -31,7 +31,7 @@ function playRound(playerSelection, computerSelection) {
     alert("You Lose! Scissors beats Paper");
   } else if (playerSelection === "scissors" && computerSelection === "paper") {
     alert("You Win! Scissors beats Paper");
-  } else if (playerSelection === "scissors" && computerSelection === "rock"){
+  } else if (playerSelection === "scissors" && computerSelection === "rock") {
     alert("You Lose! Rock beats Scissors");
   } else {
     alert("invalid");
@@ -51,11 +51,36 @@ function getRoundResult() {
 
 // Plays a game with five rounds.
 function playGame() {
-  getRoundResult();
-  getRoundResult();
-  getRoundResult();
-  getRoundResult();
-  getRoundResult();
+
+  // Keeps track of the score
+  let playerScore = 0;
+  let computerScore = 0;
+
+  function getScore() {
+    let roundResult = getRoundResult();
+    
+    if (roundResult === "It's a tie!") {
+      playerScore;
+      computerScore;
+    } else if (
+      roundResult === "You Win! Rock beats Scissors" ||
+      roundResult === "You Win! Paper beats Rock" ||
+      roundResult === "You Win! Scissors beats Paper"
+    ) {
+      playerScore++;
+    } else {
+      computerScore++;
+    }
+
+    let score = "Score: " + playerScore + " " + computerScore;
+
+    console.log(score);
+  }
+  getScore();
+  getScore();
+  getScore();
+  getScore();
+  getScore();
 }
 
 playGame();
