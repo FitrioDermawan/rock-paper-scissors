@@ -46,7 +46,7 @@ function getRoundResult() {
   console.log("Player :" + playerSelection);
   console.log("Computer :" + computerSelection);
 
-  alert(playRound(playerSelection, computerSelection));
+  return (playRound(playerSelection, computerSelection));
 }
 
 // Plays a game with five rounds.
