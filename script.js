@@ -10,35 +10,52 @@ function getComputerChoice() {
     return "scissors";
   }
 }
-const computerSelection = getComputerChoice();
-
-console.log(computerSelection);
 
 // Player input the choice and make it case-insensitive.
 function getPlayerChoice() {
   let selection = prompt("Rock, Paper, Scissors?", "");
   return selection.toLocaleLowerCase();
 }
-const playerSelection = getPlayerChoice();
-
-console.log(playerSelection);
 
 // Plays a single round and show result.
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    return "It's a tie!";
+    alert("It's a tie!");
   } else if (playerSelection === "rock" && computerSelection === "paper") {
-    return "You Lose! Paper beats Rock";
+    alert("You Lose! Paper beats Rock");
   } else if (playerSelection === "rock" && computerSelection === "scissors") {
-    return "You Win! Rock beats Scissors";
+    alert("You Win! Rock beats Scissors");
   } else if (playerSelection === "paper" && computerSelection === "rock") {
-    return "You Win! Paper beats Rock";
+    alert("You Win! Paper beats Rock");
   } else if (playerSelection === "paper" && computerSelection === "scissors") {
-    return "You Lose! Scissors beats Paper";
+    alert("You Lose! Scissors beats Paper");
   } else if (playerSelection === "scissors" && computerSelection === "paper") {
-    return "You Win! Scissors beats Paper";
+    alert("You Win! Scissors beats Paper");
+  } else if (playerSelection === "scissors" && computerSelection === "rock"){
+    alert("You Lose! Rock beats Scissors");
   } else {
-    return "You Lose! Rock beats Scissors";
+    alert("invalid");
   }
 }
-console.log(playRound(playerSelection, computerSelection));
+
+// Get round result based on player and computer choice.
+function getRoundResult() {
+  let computerSelection = getComputerChoice();
+  let playerSelection = getPlayerChoice();
+
+  console.log("Player :" + playerSelection);
+  console.log("Computer :" + computerSelection);
+
+  return playRound(playerSelection, computerSelection);
+}
+
+// Plays a game with five rounds.
+function playGame() {
+  getRoundResult();
+  getRoundResult();
+  getRoundResult();
+  getRoundResult();
+  getRoundResult();
+}
+
+playGame();
