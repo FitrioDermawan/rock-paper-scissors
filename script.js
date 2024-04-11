@@ -20,21 +20,21 @@ function getPlayerChoice() {
 // Plays a single round and show result.
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    alert("It's a tie!");
+    return "It's a tie!";
   } else if (playerSelection === "rock" && computerSelection === "paper") {
-    alert("You Lose! Paper beats Rock");
+    return "You Lose! Paper beats Rock";
   } else if (playerSelection === "rock" && computerSelection === "scissors") {
-    alert("You Win! Rock beats Scissors");
+    return "You Win! Rock beats Scissors";
   } else if (playerSelection === "paper" && computerSelection === "rock") {
-    alert("You Win! Paper beats Rock");
+    return "You Win! Paper beats Rock";
   } else if (playerSelection === "paper" && computerSelection === "scissors") {
-    alert("You Lose! Scissors beats Paper");
+    return "You Lose! Scissors beats Paper";
   } else if (playerSelection === "scissors" && computerSelection === "paper") {
-    alert("You Win! Scissors beats Paper");
+    return "You Win! Scissors beats Paper";
   } else if (playerSelection === "scissors" && computerSelection === "rock") {
-    alert("You Lose! Rock beats Scissors");
+    return "You Lose! Rock beats Scissors";
   } else {
-    alert("invalid");
+    return "invalid";
   }
 }
 
@@ -46,13 +46,13 @@ function getRoundResult() {
   console.log("Player :" + playerSelection);
   console.log("Computer :" + computerSelection);
 
-  return playRound(playerSelection, computerSelection);
+  alert(playRound(playerSelection, computerSelection));
 }
 
 // Plays a game with five rounds.
 function playGame() {
 
-  // Keeps track of the score
+  // Keep track of the score
   let playerScore = 0;
   let computerScore = 0;
 
@@ -81,6 +81,20 @@ function playGame() {
   getScore();
   getScore();
   getScore();
+
+  // Get the winner from the five round game.
+  function getWinner() {
+    if (playerScore === computerScore) {
+      return "Game Tied!";
+    } else if (playerScore > computerScore) {
+      return "Player Win!";
+    } else {
+      return "Computer Win!";
+    }
+  }
+
+  alert(getWinner());
+
 }
 
 playGame();
