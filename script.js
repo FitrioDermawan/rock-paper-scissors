@@ -51,10 +51,27 @@ function getRoundResult(choice) {
   let computerSelection = getComputerChoice();
   let playerSelection = getPlayerChoice(choice);
 
-  console.log("Player :" + playerSelection);
-  console.log("Computer :" + computerSelection);
+  let result = playRound(playerSelection, computerSelection);
 
-  console.log(playRound(playerSelection, computerSelection));
+  const results = document.querySelector("#results")
+
+  const player = document.createElement("div");
+  player.classList.add("selection");
+  player.textContent = `Player: ${playerSelection}`; 
+
+  results.appendChild(player);
+
+  const computer = document.createElement("div");
+  computer.classList.add("selection");
+  computer.textContent = `Computer: ${computerSelection}`;
+
+  results.appendChild(computer);
+
+  const roundResult = document.createElement("div");
+  roundResult.classList.add("roundResult");
+  roundResult.textContent = result;
+
+  results.append(roundResult);
 }
 
 // Plays a game with five rounds.
