@@ -1,3 +1,12 @@
+// Add event listener to get round result.
+const choices = document.querySelectorAll("#choice");
+
+choices.forEach((choice) => {
+  choice.addEventListener("click", () => {
+    getRoundResult(choice);
+  });
+});
+
 // Getting random choice for computer.
 function getComputerChoice() {
   let randomNum = Math.round(Math.random() * 100);
@@ -12,9 +21,8 @@ function getComputerChoice() {
 }
 
 // Player input the choice and make it case-insensitive.
-function getPlayerChoice() {
-  let selection = prompt("Rock, Paper, Scissors?", "");
-  return selection.toLocaleLowerCase();
+function getPlayerChoice(playerChoice) {
+  return playerChoice.value;
 }
 
 // Plays a single round and show result.
@@ -39,26 +47,25 @@ function playRound(playerSelection, computerSelection) {
 }
 
 // Get round result based on player and computer choice.
-function getRoundResult() {
+function getRoundResult(choice) {
   let computerSelection = getComputerChoice();
-  let playerSelection = getPlayerChoice();
+  let playerSelection = getPlayerChoice(choice);
 
   console.log("Player :" + playerSelection);
   console.log("Computer :" + computerSelection);
 
-  return (playRound(playerSelection, computerSelection));
+  console.log(playRound(playerSelection, computerSelection));
 }
 
 // Plays a game with five rounds.
 function playGame() {
-
   // Keep track of the score
   let playerScore = 0;
   let computerScore = 0;
 
   function getScore() {
     let roundResult = getRoundResult();
-    
+
     if (roundResult === "It's a tie!") {
       playerScore;
       computerScore;
@@ -94,7 +101,6 @@ function playGame() {
   }
 
   alert(getWinner());
-
 }
 
-playGame();
+// playGame();
