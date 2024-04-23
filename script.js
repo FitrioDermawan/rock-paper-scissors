@@ -3,9 +3,12 @@ const choices = document.querySelectorAll("#choice");
 
 choices.forEach((choice) => {
   choice.addEventListener("click", () => {
-    getRoundResult(choice);
+    playGame(choice);
   });
 });
+
+let playerScore = 0;
+let computerScore = 0;
 
 // Getting random choice for computer.
 function getComputerChoice() {
@@ -53,35 +56,22 @@ function getRoundResult(choice) {
 
   let result = playRound(playerSelection, computerSelection);
 
-  const results = document.querySelector("#results")
+  const player = document.querySelector("#playerSelection")
+  player.textContent = `Player: ${playerSelection}`;
 
-  const player = document.createElement("div");
-  player.classList.add("selection");
-  player.textContent = `Player: ${playerSelection}`; 
-
-  results.appendChild(player);
-
-  const computer = document.createElement("div");
-  computer.classList.add("selection");
+  const computer = document.querySelector("#computerSelection");
   computer.textContent = `Computer: ${computerSelection}`;
 
-  results.appendChild(computer);
-
-  const roundResult = document.createElement("div");
-  roundResult.classList.add("roundResult");
+  const roundResult = document.querySelector("#roundResult");
   roundResult.textContent = result;
 
-  results.append(roundResult);
+  return roundResult.textContent;
 }
 
-// Plays a game with five rounds.
-function playGame() {
-  // Keep track of the score
-  let playerScore = 0;
-  let computerScore = 0;
-
-  function getScore() {
-    let roundResult = getRoundResult();
+// Plays a one round game
+function playGame(choice) {
+  function getScore(choice) {
+    let roundResult = getRoundResult(choice);
 
     if (roundResult === "It's a tie!") {
       playerScore;
@@ -100,24 +90,26 @@ function playGame() {
 
     console.log(score);
   }
-  getScore();
-  getScore();
-  getScore();
-  getScore();
-  getScore();
+  getScore(choice);
+  
+  const player = document.querySelector("#playerScore");
+  const computer = document.querySelector("#computerScore");
 
-  // Get the winner from the five round game.
+  player.textContent = playerScore;
+  computer.textContent = computerScore;
+
   function getWinner() {
-    if (playerScore === computerScore) {
+    if (playerScore === 5 && computerScore === 5) {
       return "Game Tied!";
-    } else if (playerScore > computerScore) {
+    } else if (playerScore === 5) {
       return "Player Win!";
-    } else {
+    } else if (computerScore === 5) {
       return "Computer Win!";
     }
   }
 
-  alert(getWinner());
+  const winner = getWinner();
+  if (winner !== undefined) {
+    alert(winner);
+  }
 }
-
-// playGame();
