@@ -3,6 +3,7 @@ const choices = document.querySelectorAll("#choice");
 
 choices.forEach((choice) => {
   choice.addEventListener("click", () => {
+    startGame();
     playGame(choice);
   });
 });
@@ -56,7 +57,7 @@ function getRoundResult(choice) {
 
   let result = playRound(playerSelection, computerSelection);
 
-  const player = document.querySelector("#playerSelection")
+  const player = document.querySelector("#playerSelection");
   player.textContent = `Player: ${playerSelection}`;
 
   const computer = document.querySelector("#computerSelection");
@@ -70,6 +71,7 @@ function getRoundResult(choice) {
 
 // Plays a one round game
 function playGame(choice) {
+  document.querySelector("#finalResult").style.display = "none";
   function getScore(choice) {
     let roundResult = getRoundResult(choice);
 
@@ -85,13 +87,9 @@ function playGame(choice) {
     } else {
       computerScore++;
     }
-
-    let score = "Score: " + playerScore + " " + computerScore;
-
-    console.log(score);
   }
   getScore(choice);
-  
+
   const player = document.querySelector("#playerScore");
   const computer = document.querySelector("#computerScore");
 
@@ -99,17 +97,64 @@ function playGame(choice) {
   computer.textContent = computerScore;
 
   function getWinner() {
+    const finalResult = document.querySelector("#finalResult");
     if (playerScore === 5 && computerScore === 5) {
-      return "Game Tied!";
+      finalResult.textContent = "Game Tied!";
+      gameEnd();
     } else if (playerScore === 5) {
-      return "Player Win!";
+      finalResult.textContent = "Player Win!";
+      gameEnd();
     } else if (computerScore === 5) {
-      return "Computer Win!";
+      finalResult.textContent = "Computer Lose!";
+      gameEnd();
     }
   }
 
-  const winner = getWinner();
-  if (winner !== undefined) {
-    alert(winner);
+  getWinner();
+
+  function gameEnd() {
+    document.querySelectorAll("#results div").forEach(function (div) {
+      div.style.display = "none";
+    });
+
+    document.querySelectorAll("#choices button").forEach(function (button) {
+      button.style.display = "none";
+    });
+
+    document.querySelector("#finalResult").style.display = "";
+    document.querySelector("#playAgain").style.display = "";
   }
+
+  const playAgain = document.querySelector("#playAgain");
+
+  playAgain.addEventListener("click", () => {
+    playerScore = 0;
+    computerScore = 0;
+
+    document.querySelectorAll("#score div").forEach(function (div) {
+      div.style.display = "none";
+    });
+
+    document.querySelectorAll("#score div").forEach(function (div) {
+      div.style.display = "none";
+
+      document.querySelectorAll("#choices button").forEach(function (button) {
+        button.style.display = "";
+      });
+
+      playAgain.style.display = "none";
+
+      document.querySelector("#finalResult").style.display = "none";
+    });
+  });
+}
+
+function startGame() {
+  document.querySelectorAll("#results div").forEach(function (div) {
+    div.style.display = "";
+  });
+
+  document.querySelectorAll("#score div").forEach(function (div) {
+    div.style.display = "";
+  });
 }
